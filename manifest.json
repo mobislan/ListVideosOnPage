@@ -1,0 +1,33 @@
+{
+
+  "manifest_version": 2,
+  "name": "ListVideosOnPage",
+  "version": "1.0",
+
+  "description": "Firefox extension to list all videos found or requested on a page.",
+
+  "permissions": ["webRequest", "webRequestBlocking", "tabs", "*://*/*", "activeTab", "storage"],
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "homepage_url": "https://github.com/mobislan/ListVideosOnPage",
+  "options_ui": {
+    "page": "settings.html"
+  },
+  "applications": {
+    "gecko": {
+      "id": "mobislan@users.noreply.github.com_ListVideosOnPage",
+      "strict_min_version": "52.0"
+    }
+  },
+  "page_action": {
+    "browser_style": true,
+    "default_icon": {
+      "19": "icons/video.png",
+      "38": "icons/video.png"
+    },
+    "default_title": "List videos on page",
+    "default_popup": "popup/video_list.html"
+  }
+}
