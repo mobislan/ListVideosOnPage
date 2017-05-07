@@ -3,7 +3,9 @@ function videoUrlsRecieved(message) {
   var mydiv = document.getElementById("videoDiv");
   for (var i = 0; i < videoUrls.length; i++) {
     var aTag = document.createElement('a');
-    aTag.innerHTML = videoUrls[i];
+    var linkText = document.createTextNode(videoUrls[i]);
+    aTag.appendChild(linkText);
+    aTag.setAttribute('linkToBeOpened', videoUrls[i]);
     aTag.setAttribute('href', "#");
     mydiv.appendChild(aTag);
     mydiv.appendChild(document.createElement("br"));
@@ -11,7 +13,7 @@ function videoUrlsRecieved(message) {
 
     aTag.onclick = function(elmnt) {
       browser.tabs.create({
-        url: elmnt.target.innerHTML,
+        url: elmnt.rangeParent.textContent,
         active: true
       })
     }
