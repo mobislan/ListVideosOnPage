@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "ListVideosOnPage",
-  "version": "1.0.1",
+  "version": "1.0.2",
 
   "description": "Firefox extension to list all videos found or requested on a page.",
 
