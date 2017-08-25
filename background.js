@@ -9,7 +9,12 @@ function checkIfVideoUrl(requestDetails) {
 
 function messageRecieved(request, sender, sendResponse) {
   if (request.parsedUrls) {
-    videoUrls[sender.tab.id] = request.parsedUrls;
+    if (videoUrls[sender.tab.id].length > 0) {
+      videoUrls[sender.tab.id] = videoUrls[sender.tab.id].concat(request.parsedUrls);
+    }
+    else{
+      videoUrls[sender.tab.id] = request.parsedUrls;
+    }
   } else if (request.geturls) {
     sendResponse({
       videoUrls: videoUrls[request.tabId]
@@ -27,7 +32,7 @@ function callPageToParseForVideos(tabId, changeInfo, tab) {
       var host_to_intercept = settings.host_to_intercept.split(',');
       var host_to_intercept_matches = [];
       for (var i = 0; i < host_to_intercept.length; i++) {
-        host_to_intercept_matches.push("*://*." + host_to_intercept + "/*");
+        host_to_intercept_matches.push("*://*." + host_to_intercept[i] + "/*");
       }
 
       browser.webRequest.onBeforeRequest.addListener(
