@@ -9,10 +9,11 @@ function checkIfVideoUrl(requestDetails) {
 
 function messageRecieved(request, sender, sendResponse) {
   if (request.parsedUrls) {
+    videoUrls[sender.tab.id] = videoUrls[sender.tab.id] ? videoUrls[sender.tab.id] : [];
+
     if (videoUrls[sender.tab.id].length > 0) {
       videoUrls[sender.tab.id] = videoUrls[sender.tab.id].concat(request.parsedUrls);
-    }
-    else{
+    } else {
       videoUrls[sender.tab.id] = request.parsedUrls;
     }
   } else if (request.geturls) {
